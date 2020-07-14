@@ -24,3 +24,6 @@ final class CoffeDrink {
     }
 }
 
+enum CofeName {
+    case espresso, chokolateLatte
+}

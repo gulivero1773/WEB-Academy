@@ -68,24 +68,35 @@ final class CoffeMachine {
         }
     }
     
-    func makeEspresso (coffeMachine: CoffeMachine) -> String {
+    func makeCoffe(cofe: CofeName){
+        switch cofe {
+        case .espresso:
+            self.makeEspresso()
+        case .chokolateLatte:
+            self.makeLatte()
+        default:
+            print("Choose coffe")
+        }
+    }
+    
+  private  func makeEspresso () -> String {
         let name = "Espresso"
         let watter = 20
         let coffe = 15
         let syrop: Syrop? = nil
         
-        guard coffeMachine.lvlWater > watter else {
+        guard self.lvlWater > watter else {
             print("Error! Low level WATER in coffe machine! ADD WATER!")
             return  ""
             
         }
-        guard coffeMachine.lvlCoffe > coffe else {
+        guard self.lvlCoffe > coffe else {
             print("Error! Low level COFFE in coffe machine! ADD COFFE!")
             return ""
         }
         
-        coffeMachine.lvlWater -= watter
-        coffeMachine.lvlCoffe -= coffe
+        self.lvlWater -= watter
+        self.lvlCoffe -= coffe
         
         let espresso = CoffeDrink(name: name,
                                   water: watter,
@@ -95,30 +106,30 @@ final class CoffeMachine {
         return ""
     }
     
-    func makeChockolateLatte(coffeMachine: CoffeMachine) -> String {
+  private func makeLatte() -> String {
         let name = "Chockolate Latte"
         let watter = 30
         let coffe = 9
         let surop: Syrop = .init(chocolate: 10, vanila: 0, coconut: 0)
         
-        guard coffeMachine.lvlWater > watter else {
+        guard self.lvlWater > watter else {
             print("Error! Low level of WATER in coffe machine! ADD WATER to machine!")
             return ""
         }
         
-        guard coffeMachine.lvlCoffe > coffe else {
+        guard self.lvlCoffe > coffe else {
             print("Error! Low level COFFE in coffe machine! ADD COFFE to machine!")
             return ""
         }
         
-        guard coffeMachine.syrop.chocolate! > surop.chocolate! else {
+        guard self.syrop.chocolate! > surop.chocolate! else {
             print("Error! Low level CHOCOLATE SUROP in coffe machine! ADD CHOCOLATE SUROP!")
             return ""
         }
         
-        coffeMachine.lvlWater -= watter
-        coffeMachine.lvlCoffe -= coffe
-        coffeMachine.syrop.chocolate! -= syrop.chocolate!
+        self.lvlWater -= watter
+        self.lvlCoffe -= coffe
+        self.syrop.chocolate! -= syrop.chocolate!
         
         let chockolateLatte = CoffeDrink(name: name,
                                          water: watter,
